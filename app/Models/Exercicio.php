@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class ExercicioModel extends Model
+class Exercicio extends Model
 {
     use HasFactory;
     protected $table = 'exercicios';
 
     protected $fillable = [
-        'name_activiry',
+        'name_activity',
         'duration',
         'calories_burned',
         'date',
