@@ -171,15 +171,8 @@
     </style>
 </head>
 <body>
-<form method="POST" action="{{ route('logout') }}">
-                            @csrf
+    @include('layouts.header')
 
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
 
 <div class="container">
 
