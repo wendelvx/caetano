@@ -15,7 +15,8 @@
 
         {{-- O action aponta para a rota que salva o exercício (método POST) --}}
         <form action="{{ route('exercicios.store') }}" method="POST">
-            @csrf {{-- Token de segurança obrigatório no Laravel --}}
+            @csrf
+            {{-- Token de segurança obrigatório no Laravel --}}
 
             <div>
                 <label for="type">Nome da Atividade:</label>

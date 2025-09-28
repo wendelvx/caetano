@@ -12,10 +12,17 @@ class ExercicioController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $user=Auth::User();
-        $exercicios = Exercicio::where('user_id', $user->id)->get();
+        $nameExec = $request->input('name-filter');
+        $dateExec = $request->input('date-filter');
+        
+        $exercicios = Exercicio::where('user_id', $user->id)
+            ->when($nameExec,fn($query) => $query->where('name_activity','like',"%{$nameExec}%"))
+            ->when($dateExec,fn($query) => $query->whereDate('date',$dateExec))
+            ->get();
+            
         return view('exercicios.index', compact('exercicios','user'));
     }
 
