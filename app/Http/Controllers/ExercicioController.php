@@ -40,19 +40,15 @@ class ExercicioController extends Controller
     public function store(Request $request)
     {
          $validatedData = $request->validate([
-            'name_activity'            => 'required|string|max:255', // O nome da atividade (campo 'type' no form)
-            'duration'        => 'required|integer|min:1',  // Usa validação para formato TIME (HH:MM)
+            'name_activity'            => 'required|string|max:255', 
+            'duration'        => 'required|integer|min:1',  
             'calories_burned' => 'required|integer|min:1',
             'date'            => 'required|date',
         ]);
 
-        $exercicio = Exercicio::create([
-            'user_id'         => Auth::id(), 
-            'name_activity'   => $validatedData['name_activity'], 
-            'duration'        => $validatedData['duration'],
-            'calories_burned' => $validatedData['calories_burned'],
-            'date'            => $validatedData['date'],
-        ]);
+        $validatedData['user_id'] = Auth::id();
+
+        Exercicio::create($validatedData);
 
         return redirect()->route('exercicios.index')->with('success', 'O exercício foi registrado com sucesso!');
     }
